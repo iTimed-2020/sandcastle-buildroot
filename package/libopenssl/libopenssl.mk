@@ -62,6 +62,7 @@ define HOST_LIBOPENSSL_CONFIGURE_CMDS
 		no-tests \
 		no-fuzz-libfuzzer \
 		no-fuzz-afl \
+        no-asm \
 		shared \
 		zlib-dynamic \
 	)
@@ -86,6 +87,7 @@ define LIBOPENSSL_CONFIGURE_CMDS
 			no-tests \
 			no-fuzz-libfuzzer \
 			no-fuzz-afl \
+            no-asm \
 			$(if $(BR2_STATIC_LIBS),zlib,zlib-dynamic) \
 	)
 	$(SED) "s#-march=[-a-z0-9] ##" -e "s#-mcpu=[-a-z0-9] ##g" $(@D)/Makefile

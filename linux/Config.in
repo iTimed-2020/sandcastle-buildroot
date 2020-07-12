@@ -99,6 +99,12 @@ config BR2_LINUX_KERNEL_CUSTOM_SVN
 	  This option allows Buildroot to get the Linux kernel source
 	  code from a Subversion repository.
 
+config BR2_LINUX_KERNEL_CUSTOM_LOCAL
+	bool "Custom local source code"
+	help
+	  This option allows Buildroot to get the Linux kernel source
+	  code from a local directory.
+
 endchoice
 
 config BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE
@@ -108,6 +114,10 @@ config BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE
 config BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION
 	string "URL of custom kernel tarball"
 	depends on BR2_LINUX_KERNEL_CUSTOM_TARBALL
+
+config BR2_LINUX_KERNEL_CUSTOM_LOCAL_LOCATION
+	string "Path to custom kernel (relative to buildroot path)"
+	depends on BR2_LINUX_KERNEL_CUSTOM_LOCAL
 
 if BR2_LINUX_KERNEL_CUSTOM_GIT || BR2_LINUX_KERNEL_CUSTOM_HG || BR2_LINUX_KERNEL_CUSTOM_SVN
 

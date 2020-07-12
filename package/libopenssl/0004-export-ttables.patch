@@ -1,0 +1,58 @@
+From 5ced59456c7cb1d88c799d9ec08e0b976b634fa8 Mon Sep 17 00:00:00 2001
+From: Gregor Haas <gregorhaas1997@gmail.com>
+Date: Fri, 15 May 2020 20:20:10 -0400
+Subject: [PATCH] export ttables
+
+---
+ crypto/aes/aes_core.c | 5 +++++
+ include/openssl/aes.h | 5 +++++
+ util/libcrypto.num    | 4 ++++
+ 3 files changed, 14 insertions(+)
+
+diff --git a/crypto/aes/aes_core.c b/crypto/aes/aes_core.c
+index f1f11fd8de..9af58bb0a6 100644
+--- a/crypto/aes/aes_core.c
++++ b/crypto/aes/aes_core.c
+@@ -626,6 +626,11 @@ static const u32 rcon[] = {
+     0x1B000000, 0x36000000, /* for 128-bit blocks, Rijndael never uses more than 10 rcon values */
+ };
+ 
++const unsigned int *get_Te0() { return Te0; }
++const unsigned int *get_Te1() { return Te1; }
++const unsigned int *get_Te2() { return Te2; }
++const unsigned int *get_Te3() { return Te3; }
++
+ /**
+  * Expand the cipher key into the encryption key schedule.
+  */
+diff --git a/include/openssl/aes.h b/include/openssl/aes.h
+index 245c552abd..2bcd03b812 100644
+--- a/include/openssl/aes.h
++++ b/include/openssl/aes.h
+@@ -38,6 +38,11 @@ struct aes_key_st {
+ };
+ typedef struct aes_key_st AES_KEY;
+ 
++const unsigned int *get_Te0();
++const unsigned int *get_Te1();
++const unsigned int *get_Te2();
++const unsigned int *get_Te3();
++
+ const char *AES_options(void);
+ 
+ int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+diff --git a/util/libcrypto.num b/util/libcrypto.num
+index bf8b803c4c..0664cb715f 100644
+--- a/util/libcrypto.num
++++ b/util/libcrypto.num
+@@ -4582,3 +4582,7 @@ OPENSSL_INIT_set_config_file_flags      4535	1_1_1b	EXIST::FUNCTION:STDIO
+ EVP_PKEY_get0_engine                    4536	1_1_1c	EXIST::FUNCTION:ENGINE
+ X509_get0_authority_serial              4537	1_1_1d	EXIST::FUNCTION:
+ X509_get0_authority_issuer              4538	1_1_1d	EXIST::FUNCTION:
++get_Te2                                 4539	1_1_1d	EXIST::FUNCTION:
++get_Te3                                 4540	1_1_1d	EXIST::FUNCTION:
++get_Te1                                 4541	1_1_1d	EXIST::FUNCTION:
++get_Te0                                 4542	1_1_1d	EXIST::FUNCTION:
+-- 
+2.17.1
+
